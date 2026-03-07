@@ -44,8 +44,9 @@ app.get('/projects', async (req, res) => {
     res.render('projects', { title });
 });
 
-app.get('/', (req, res) => {
-  res.send('Hello from Express!');
+app.get('/categories', async (req, res) => {
+    const title = 'Service Categories';
+    res.render('categories', { title });
 });
 
 app.listen(PORT, () => {
