@@ -290,3 +290,27 @@ body {
       height: 56px;
     }
   }
+
+  .category-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-top: 0.5rem;
+  }
+  
+  .category-tag {
+    display: inline-block;
+    padding: 0.45rem 0.85rem;
+    border-radius: 999px;
+    background-color: #e8f0ff;
+    color: #163ea8;
+    text-decoration: none;
+    font-weight: 700;
+    border: 1px solid #c9dafc;
+  }
+  
+  .category-tag:hover,
+  .category-tag:focus {
+    background-color: #dbe8ff;
+    text-decoration: none;
+  }
