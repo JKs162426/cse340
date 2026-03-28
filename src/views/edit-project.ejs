@@ -1,0 +1,61 @@
+<%- include('partials/header') %>
+
+<main>
+  <h1><%= title %></h1>
+
+  <form action="/edit-project/<%= projectDetails.project_id %>" method="POST">
+
+    <!-- Title -->
+    <label for="title">Project Title</label>
+    <input
+      type="text"
+      id="title"
+      name="title"
+      value="<%= projectDetails.title %>"
+      required
+    >
+
+    <!-- Description -->
+    <label for="description">Description</label>
+    <textarea id="description" name="description" required>
+<%= projectDetails.description %>
+    </textarea>
+
+    <!-- Location -->
+    <label for="project_location">Location</label>
+    <input
+      type="text"
+      id="project_location"
+      name="project_location"
+      value="<%= projectDetails.project_location %>"
+      required
+    >
+
+    <!-- Date -->
+    <label for="start_date">Date</label>
+    <input
+      type="date"
+      id="start_date"
+      name="start_date"
+      value="<%= new Date(projectDetails.start_date || projectDetails.date).toISOString().split('T')[0] %>"
+      required
+    >
+
+    <!-- Organization dropdown -->
+    <label for="organization_id">Organization</label>
+    <select id="organization_id" name="organization_id" required>
+      <% organizations.forEach(org => { %>
+        <option value="<%= org.organization_id %>"
+          <%= org.organization_id === projectDetails.organization_id ? 'selected' : '' %>>
+          <%= org.name %>
+        </option>
+      <% }) %>
+    </select>
+
+    <!-- Submit -->
+    <button type="submit">Update Project</button>
+
+  </form>
+</main>
+
+<%- include('partials/footer') %>
