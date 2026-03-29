@@ -90,14 +90,14 @@ const getCategoriesByProjectId = async (projectId) => {
   }
 };
 
-const createProject = async (title, description, location, date, organizationId) => {
+const createProject = async (title, description, project_location, start_date, organization_id) => {
   const query = `
-    INSERT INTO project (title, description, location, date, organization_id)
+    INSERT INTO projects (title, description, project_location, start_date, organization_id)
     VALUES ($1, $2, $3, $4, $5)
     RETURNING project_id;
   `;
 
-  const query_params = [title, description, location, date, organizationId];
+  const query_params = [title, description, project_location, start_date, organization_id];
   const result = await db.query(query, query_params);
 
   if (result.rows.length === 0) {
