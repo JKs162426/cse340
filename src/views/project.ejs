@@ -11,7 +11,7 @@
       day: 'numeric'
     }) %>
   </p>
-  <p><strong>Location:</strong> <%= project.location %></p>
+  <p><strong>Location:</strong> <%= project.project_location %></p>
   <p>
     <strong>Organization:</strong>
     <a href="/organization/<%= project.organization_id %>"><%= project.organization_name %></a>
@@ -25,6 +25,7 @@
       </a>
     <% }) %>
   </div>
+  <a href="/edit-project/<%= project.project_id %>">Edit Project</a><br> 
   <a href="/assign-categories/<%= project.project_id %>">Assign Categories</a>
 </main>
 <%- include('partials/footer') %>

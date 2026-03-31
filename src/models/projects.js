@@ -8,7 +8,7 @@ const getUpcomingProjects = async (numberOfProjects) => {
         p.title,
         p.description,
         p.start_date AS date,
-        p.project_location AS location,
+        p.project_location,
         p.organization_id,
         o.name AS organization_name
       FROM projects p
@@ -35,7 +35,7 @@ const getProjectDetails = async (id) => {
         p.title,
         p.description,
         p.start_date AS date,
-        p.project_location AS location,
+        p.project_location,
         p.organization_id,
         o.name AS organization_name
       FROM projects p

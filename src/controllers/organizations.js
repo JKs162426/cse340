@@ -72,28 +72,35 @@ const showEditOrganizationForm = async (req, res) => {
     res.render('edit-organization', { title, organizationDetails });
 };
 
-const processEditOrganizationForm = async (req, res) => {
+const processEditOrganizationForm = async (req, res, next) => {
     const organizationId = req.params.id;
     const { name, description, contactEmail, logoFilename } = req.body;
-
-    await updateOrganization(organizationId, name, description, contactEmail, logoFilename);
-    
-    // Set a success flash message
-    req.flash('success', 'Organization updated successfully!');
-
-    res.redirect(`/organization/${organizationId}`);
-
+  
+    // Validate first
     const results = validationResult(req);
-if (!results.isEmpty()) {
-    // Validation failed - loop through errors
-    results.array().forEach((error) => {
+    if (!results.isEmpty()) {
+      results.array().forEach((error) => {
         req.flash('error', error.msg);
-    });
-
-    // Redirect back to the edit organization form
-    return res.redirect('/edit-organization/' + req.params.id);
-}
-};
+      });
+  
+      return res.redirect(`/edit-organization/${organizationId}`);
+    }
+  
+    try {
+      await updateOrganization(
+        organizationId,
+        name,
+        description,
+        contactEmail,
+        logoFilename
+      );
+  
+      req.flash('success', 'Organization updated successfully!');
+      return res.redirect(`/organization/${organizationId}`);
+    } catch (error) {
+      next(error);
+    }
+  };
 
 // Export any controller functions
 export { showOrganizationsPage, showOrganizationDetailsPage, processNewOrganizationForm, organizationValidation, showEditOrganizationForm, processEditOrganizationForm };

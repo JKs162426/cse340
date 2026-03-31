@@ -260,10 +260,9 @@ main li a:focus {
 }
 
 .category-tags {
-  display: flex;
-  flex-wrap: wrap;
   gap: 0.75rem;
-  margin-top: 0.5rem;
+  margin: 1rem;
+  text-align: center;
 }
 
 .category-tag {
@@ -309,4 +308,30 @@ border-color: #ffeeba;
 color: #0c5460;
 background-color: #d1ecf1;
 border-color: #bee5eb;
+}
+
+form {
+  max-width: 500px;
+  margin: 0 auto;
+  text-align: left;
+}
+
+form label {
+  display: block;
+  margin-top: 1rem;
+  font-weight: bold;
+}
+
+form input,
+form textarea,
+form select {
+  width: 100%;
+  padding: 0.5rem;
+  margin-top: 0.25rem;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+form button {
+  margin-top: 1.5rem;
 }
