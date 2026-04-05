@@ -1,0 +1,20 @@
+<%- include('partials/header') %>
+<main>
+  <h1><%= title %></h1>
+
+  <p>Here are our users:</p>
+  <ul>
+    <% users.forEach(registeredUser => { %>
+      <li>
+        <strong><%= registeredUser.user_name %></strong>: <%= registeredUser.user_email %>
+        <% if (user && user.role_name === 'admin') { %>
+          <p>
+            <a href="/edit-user/<%= registeredUser.user_id %>">Edit User</a>
+          </p>
+        <% } %>
+      </li>
+    <% }); %>
+  </ul>
+</main>
+
+<%- include('partials/footer') %>

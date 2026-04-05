@@ -13,17 +13,32 @@
             <li><a href="/organizations">Organizations</a></li>
             <li><a href="/projects">Projects</a></li>
             <li><a href="/categories">Categories</a></li>
+    
+            <% if (isLoggedIn) { %>
+    
+                <% if (user && user.role_name === 'admin') { %>
+                    <li><a href="/registered-users">Admin Dashboard</a></li>
+                <% } %>
+    
+                <li><a href="/logout">Logout</a></li>
+    
+            <% } else { %>
+    
+                <li><a href="/register">Register</a></li>
+                <li><a href="/login">Login</a></li>
+    
+            <% } %>
         </ul>
     </nav>
 
 
-    <% const messages = flash(); %>
+<% const messages = flash(); %>
     <% Object.keys(messages).forEach(type => { %>
         <% if (messages[type].length > 0) { %>
-            
+            <div class="alert <%= type %>">
                 <% messages[type].forEach(msg => { %>
-                    <%= msg %>
-                <% }); %>
-            
+                    <p><%= msg %></p>
+                <% }) %>
+            </div>
         <% } %>
-    <% }); %>
+<% }) %>

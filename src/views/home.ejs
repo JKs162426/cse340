@@ -1,6 +1,9 @@
 
     <%- include('partials/header') %>
     <main>
+        <% if (isLoggedIn) { %>
+            <p><a href="/dashboard">My Dashboard</a></p>
+        <% } %>
         <h1><%= title %></h1>
 
         <h2>Welcome to the CSE 340 Service Network!</h2>
