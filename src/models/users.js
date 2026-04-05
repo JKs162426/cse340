@@ -97,16 +97,17 @@ const getUserDetails = async (userId) => {
     return result.rows.length > 0 ? result.rows[0] : null;
 };
 
-const updateUser = async (userId, name, email) => {
+const updateUser = async (userId, name, email, roleId) => {
     const query = `
         UPDATE users
         SET user_name = $1,
-            user_email = $2
-        WHERE user_id = $3
+            user_email = $2,
+            role_id = $3
+        WHERE user_id = $4
         RETURNING user_id;
     `;
 
-    const result = await db.query(query, [name, email, userId]);
+    const result = await db.query(query, [name, email, roleId, userId]);
 
     if (result.rows.length === 0) {
         throw new Error('User not found');

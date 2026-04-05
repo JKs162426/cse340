@@ -84,3 +84,25 @@ VALUES
 (13, 3),
 (14, 2),
 (15, 4);
+
+CREATE TABLE roles (
+	role_id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+	role_name VARCHAR(50) UNIQUE NOT NULL,
+	role_description TEXT
+);
+
+INSERT INTO roles (role_name, role_description) VALUES 
+    ('user', 'Standard user with basic access'),
+    ('admin', 'Administrator with full system access');
+
+CREATE TABLE users (
+	user_id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+	user_name VARCHAR(100) NOT NULL,
+	user_email VARCHAR(100) UNIQUE NOT NULL,
+	password_hash VARCHAR(225) NOT NULL,
+	role_id INT REFERENCES roles(role_id),
+	create_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+ALTER TABLE users
+ALTER COLUMN role_id SET NOT NULL;
