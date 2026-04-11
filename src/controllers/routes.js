@@ -8,7 +8,9 @@ import {
   processNewProjectForm,
   projectValidation,
   showEditProjectForm,
-  processEditProjectForm
+  processEditProjectForm,
+  processVolunteerForProject,
+  processRemoveVolunteerFromProject
 } from './projects.js';
 import { showNewOrganizationForm } from './new-organizations.js';
 import {
@@ -90,6 +92,9 @@ router.get('/dashboard', requireLogin, showDashboard);
 router.get('/registered-users', requireLogin, requireRole('admin'), showRegisteredUsersPage);
 router.get('/edit-user/:id', requireLogin, requireRole('admin'), showEditUserForm);
 router.post('/edit-user/:id', requireLogin, requireRole('admin'), userValidation, processEditUserForm);
+
+router.post('/projects/:id/volunteer', requireLogin, processVolunteerForProject);
+router.post('/projects/:id/remove-volunteer', requireLogin, processRemoveVolunteerFromProject);
 
 router.get('/test-error', testErrorPage);
 

@@ -7,6 +7,24 @@
     <p>Name: <%= name %></p>
     <p>Username: <%= email %></p>
 
+    <h2>My Volunteer Projects</h2>
+
+    <% if (volunteerProjects && volunteerProjects.length > 0) { %>
+    <ul>
+        <% volunteerProjects.forEach(project => { %>
+        <li>
+            <a href="/projects/<%= project.project_id %>"><%= project.title %></a>
+            (<%= project.organization_name %>)
+            <form action="/projects/<%= project.project_id %>/remove-volunteer" method="POST" style="display:inline;">
+            <button type="submit">Remove</button>
+            </form>
+        </li>
+        <% }) %>
+    </ul>
+    <% } else { %>
+    <p>You have not signed up to volunteer for any projects yet.</p>
+    <% } %>
+
 </main>
 
 <%- include('partials/footer') %>
