@@ -106,3 +106,11 @@ CREATE TABLE users (
 
 ALTER TABLE users
 ALTER COLUMN role_id SET NOT NULL;
+
+CREATE TABLE project_volunteer (
+    user_id INT NOT NULL,
+    project_id INT NOT NULL,
+    PRIMARY KEY (user_id, project_id),
+    FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE,
+    FOREIGN KEY (project_id) REFERENCES projects(project_id) ON DELETE CASCADE
+);
